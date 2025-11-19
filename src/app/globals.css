@@ -1,0 +1,217 @@
+@import 'tailwindcss';
+
+:root {
+	--primary-color: #00e1dd;
+	--secondary-color: #0a1f33;
+	--accent-color: #34c5e0;
+	--secondary-accent-color: #004aad;
+	--text-light: #ffffff;
+}
+
+@theme inline {
+	--color-background: var(--secondary-color);
+	--color-primary: var(--primary-color);
+	--color-secondary: var(--secondary-color);
+	--color-accent: var(--accent-color);
+	--color-link: var(--primary-color);
+	--color-text-light: var(--text-light);
+	--font-montserrat: var(--font-montserrat);
+	--font-inter: var(--font-inter);
+}
+
+@layer base {
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: var(--font-montserrat);
+		/* background-color: var(--color-bg-light); */
+	}
+
+	main {
+		margin: 0;
+		padding: 0;
+	}
+
+	input,
+	textarea {
+		cursor: text;
+	}
+
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus {
+		-webkit-text-fill-color: var(--text-light) !important;
+		caret-color: var(--text-light) !important;
+
+		/* міняємо фон */
+		-webkit-box-shadow: 0 0 0 1000px #0a1f33 inset !important;
+		box-shadow: 0 0 0 1000px #0a1f33 inset !important;
+
+		/* забрати жовтий */
+		background-color: #0a1f33 !important;
+
+		/* фікси для Chrome */
+		border: 1px solid var(--primary-color) !important;
+		transition: background-color 5000s ease-in-out 0s !important;
+	}
+
+	a {
+		outline: none;
+
+		color: inherit;
+		text-decoration: none;
+
+		transition-duration: 250ms;
+		transition-timing-function: ease;
+	}
+
+	button {
+		box-sizing: border-box;
+
+		outline: 0;
+		padding: 0;
+		margin: 0;
+		border: 0;
+
+		background-color: transparent;
+
+		cursor: pointer;
+		transition-duration: 250ms;
+		transition-timing-function: ease;
+	}
+}
+
+@layer utilities {
+	.box-glow {
+		box-shadow: 0 0 30px 10px rgba(0, 225, 221, 0.2);
+	}
+}
+
+.stat-card {
+	transition: 0.3s;
+}
+.stat-card:hover {
+	box-shadow: 0 0 30px 10px rgba(0, 225, 221, 0.2);
+}
+
+.glass-card {
+	background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+	--tw-bg-opacity: 0.05;
+	--tw-backdrop-blur: blur(16px);
+	-webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+		var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate)
+		var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+		var(--tw-backdrop-sepia);
+	backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+		var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate)
+		var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+		var(--tw-backdrop-sepia);
+}
+
+.text-glow {
+	text-shadow: 0 0 20px rgba(0, 225, 221, 0.5);
+}
+
+.font-inter {
+	font-family: var(--font-inter);
+}
+
+.btn-gradient {
+	background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+.wave-gradient {
+	background: linear-gradient(135deg, #0a1f33 0%, #001a2e 50%, #0a1f33 100%);
+}
+
+@keyframes pulse-soft {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.btn-pulse {
+	animation: pulse-soft 2s ease-in-out infinite;
+}
+.btn-pulse:hover {
+	animation-play-state: paused;
+}
+
+.hero {
+	background-image: url('/images/bg_hero.avif');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.about {
+	background-image: url('/images/about_hero.avif');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.between-sections-gradient {
+	background: linear-gradient(to bottom, transparent 0%, var(--secondary-color) 100%);
+}
+
+.form-input {
+	@apply w-full bg-transparent border border-primary text-text-light rounded-xl px-4 py-3 outline-none focus:border-accent;
+}
+
+select {
+	color: var(--text-light); /* текст у самому select */
+	background-color: #0a1f33; /* фон select */
+}
+
+select option {
+	background-color: #0a1f33;
+	color: var(--text-light);
+}
+
+select option:hover {
+	background-color: var(--color-accent);
+}
+
+.form-error {
+	color: #ff6b6b;
+	font-size: 13px;
+	font-style: italic;
+}
+
+/* loader */
+
+.loader {
+	position: relative;
+	width: 100px;
+	height: 100px;
+}
+
+.loader:before,
+.loader:after {
+	content: '';
+	border-radius: 50%;
+	position: absolute;
+	inset: 0;
+	box-shadow: 0 0 10px 2px var(--color-accent) inset;
+}
+.loader:after {
+	box-shadow: 0 2px 0 var (--color-primary) inset;
+	animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
