@@ -76,18 +76,23 @@ const Header = () => {
 
 			{/* Mobile menu (animated) */}
 			{menuOpen && (
-				<div
-					className='fixed inset-0 z-9999 flex justify-end'
-					onClick={() => setMenuOpen(false)}
-				>
-					{/* Fade-in backdrop */}
-					<div className='absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in' />
-
-					{/* Sliding panel */}
+				<div className='fixed inset-0 z-9999 overflow-hidden'>
+					{/* затемнення */}
 					<div
-						className='relative w-3/4 max-w-[280px] bg-background h-screen overflow-y-auto p-6 flex flex-col gap-6 
-						animate-slide-in'
-						onClick={e => e.stopPropagation()}
+						className='absolute inset-0 bg-black/60 backdrop-blur-sm'
+						onClick={() => setMenuOpen(false)}
+					/>
+
+					{/* біле меню справа */}
+					<div
+						className='
+        absolute right-0 top-0
+        h-full w-[75%] max-w-[280px]
+        bg-background
+        p-6 flex flex-col gap-6
+        shadow-xl
+        animate-slideIn
+      '
 					>
 						<button
 							className='text-text-light text-xl self-end'
