@@ -53,7 +53,7 @@ const Delivery = () => {
 								</div>
 								<div className='absolute inset-0 bg-linear-to-t from-(--secondary-color) to-transparent z-2' />
 							</div>
-							<div className='w-full h-[148px] md:h-[200px] lg:h-[160px] xl:h-[148px] p-6 flex flex-col gap-y-3'>
+							<div className='w-full h-[148px] md:h-[200px] lg:h-40 xl:h-[148px] p-6 flex flex-col gap-y-3'>
 								<p className='text-2xl font-bold font-inter text-accent text-center'>
 									{item.name}
 								</p>

@@ -19,11 +19,17 @@ const Header = () => {
 	const [scrolled, setScrolled] = useState(false)
 	const [menuOpen, setMenuOpen] = useState(false)
 
+	// Scroll shadow
 	useEffect(() => {
 		const handleScroll = () => setScrolled(window.scrollY > 10)
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
+
+	// Block body scroll when menu is open
+	useEffect(() => {
+		document.body.style.overflow = menuOpen ? 'hidden' : 'auto'
+	}, [menuOpen])
 
 	return (
 		<header
@@ -35,7 +41,7 @@ const Header = () => {
 				<div className='flex items-center gap-x-6'>
 					<Image src='/images/logo_transp.png' alt='logo' width={90} height={70} />
 
-					{/* Десктопна навігація */}
+					{/* Desktop navigation */}
 					<nav className='hidden md:flex items-center gap-6'>
 						{navLinks.map(({ label, href }) => (
 							<Link
@@ -49,7 +55,7 @@ const Header = () => {
 					</nav>
 				</div>
 
-				{/* Десктоп: телефони */}
+				{/* Desktop phones */}
 				<div className='hidden items-center gap-x-5 lg:flex xl:hidden'>
 					<Phones section='headerLg' />
 				</div>
@@ -57,7 +63,7 @@ const Header = () => {
 					<Phones section='header' />
 				</div>
 
-				{/* Мобільний бургер */}
+				{/* Mobile burger */}
 				<button
 					className='md:hidden flex flex-col gap-1.5 p-2'
 					onClick={() => setMenuOpen(true)}
@@ -68,10 +74,21 @@ const Header = () => {
 				</button>
 			</SectionWrapper>
 
-			{/* Мобільне меню — модалка */}
+			{/* Mobile menu (animated) */}
 			{menuOpen && (
-				<div className='fixed inset-0 bg-black/60 backdrop-blur-sm z-9999 flex justify-end'>
-					<div className='w-3/4 max-w-[280px] bg-background h-full p-6 flex flex-col gap-6'>
+				<div
+					className='fixed inset-0 z-9999 flex justify-end'
+					onClick={() => setMenuOpen(false)}
+				>
+					{/* Fade-in backdrop */}
+					<div className='absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in' />
+
+					{/* Sliding panel */}
+					<div
+						className='relative w-3/4 max-w-[280px] bg-background h-screen overflow-y-auto p-6 flex flex-col gap-6 
+						animate-slide-in'
+						onClick={e => e.stopPropagation()}
+					>
 						<button
 							className='text-text-light text-xl self-end'
 							onClick={() => setMenuOpen(false)}
