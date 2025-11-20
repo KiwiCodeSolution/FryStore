@@ -71,7 +71,7 @@ const Backdrop = ({
 			aria-modal='true'
 			tabIndex={interactive ? 0 : -1}
 			onKeyDown={interactive ? handleKeyDown : undefined}
-			className={`fixed inset-0 z-50 flex items-center justify-center bg-primary/30 backdrop-blur-sm ${className}`}
+			className={`fixed inset-0 z-50 flex justify-end bg-primary/30 backdrop-blur-sm ${className}`}
 			onClick={handleOverlayClick}
 		>
 			{children}

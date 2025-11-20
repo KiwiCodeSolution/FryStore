@@ -1,127 +1,76 @@
 'use client'
 
+import { navLinks } from '@/data/navLinks'
+
 import Phones from '../Phones'
 import SectionWrapper from '../UI/SectionWrapper'
+import BaseModal from '../UI/modal/BaseModal'
+import MobileMenuContent from '../UI/modal/MobileMenuModal'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-const navLinks = [
-	{ label: 'Про нас', href: '#about' },
-	{ label: 'Каталог', href: '#catalogue' },
-	{ label: 'Доставка', href: '#delivery' },
-	{ label: 'Контакти', href: '#contacts' },
-	{ label: 'Замовити', href: '#booking' }
-]
-
-const Header = () => {
+export default function Header() {
 	const [scrolled, setScrolled] = useState(false)
 	const [menuOpen, setMenuOpen] = useState(false)
 
-	// Scroll shadow
 	useEffect(() => {
 		const handleScroll = () => setScrolled(window.scrollY > 10)
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
 
-	// Block body scroll when menu is open
-	useEffect(() => {
-		document.body.style.overflow = menuOpen ? 'hidden' : 'auto'
-	}, [menuOpen])
-
 	return (
-		<header
-			className={`w-full rounded-b-2xl border-b-2 border-b-accent box-glow sticky top-0 left-0 z-50 transition-all duration-300 ${
-				scrolled ? 'bg-background/60 backdrop-blur-md' : 'bg-background'
-			}`}
-		>
-			<SectionWrapper className='flex items-center justify-between py-2'>
-				<div className='flex items-center gap-x-6'>
-					<Image src='/images/logo_transp.png' alt='logo' width={90} height={70} />
+		<>
+			<header
+				className={`w-full rounded-b-2xl border-b-2 border-b-accent box-glow sticky top-0 left-0 z-50 transition-all duration-300 ${
+					scrolled ? 'bg-background/60 backdrop-blur-md' : 'bg-background'
+				}`}
+			>
+				<SectionWrapper className='flex items-center justify-between py-2'>
+					<div className='flex items-center gap-x-6'>
+						<Image src='/images/logo_transp.png' alt='logo' width={90} height={70} />
 
-					{/* Desktop navigation */}
-					<nav className='hidden md:flex items-center gap-6'>
-						{navLinks.map(({ label, href }) => (
-							<Link
-								key={label}
-								href={href}
-								className='text-xl font-semibold text-text-light font-inter hover:text-accent hover:underline hover:underline-offset-2 cursor-pointer transition-all duration-300'
-							>
-								{label}
-							</Link>
-						))}
-					</nav>
-				</div>
-
-				{/* Desktop phones */}
-				<div className='hidden items-center gap-x-5 lg:flex xl:hidden'>
-					<Phones section='headerLg' />
-				</div>
-				<div className='hidden items-center gap-x-5 xl:flex'>
-					<Phones section='header' />
-				</div>
-
-				{/* Mobile burger */}
-				<button
-					className='md:hidden flex flex-col gap-1.5 p-2'
-					onClick={() => setMenuOpen(true)}
-				>
-					<span className='w-6 h-0.5 bg-text-light'></span>
-					<span className='w-6 h-0.5 bg-text-light'></span>
-					<span className='w-6 h-0.5 bg-text-light'></span>
-				</button>
-			</SectionWrapper>
-
-			{/* Mobile menu (animated) */}
-			{menuOpen && (
-				<div className='fixed inset-0 z-9999 overflow-hidden'>
-					{/* затемнення */}
-					<div
-						className='absolute inset-0 bg-black/60 backdrop-blur-sm'
-						onClick={() => setMenuOpen(false)}
-					/>
-
-					{/* біле меню справа */}
-					<div
-						className='
-        absolute right-0 top-0
-        h-full w-[75%] max-w-[280px]
-        bg-background
-        p-6 flex flex-col gap-6
-        shadow-xl
-        animate-slideIn
-      '
-					>
-						<button
-							className='text-text-light text-xl self-end'
-							onClick={() => setMenuOpen(false)}
-						>
-							✕
-						</button>
-
-						<nav className='flex flex-col gap-5 mt-4'>
+						{/* Desktop menu */}
+						<nav className='hidden md:flex items-center gap-6'>
 							{navLinks.map(({ label, href }) => (
 								<Link
-									key={label}
+									key={href}
 									href={href}
-									onClick={() => setMenuOpen(false)}
-									className='text-xl text-text-light font-inter hover:text-accent transition-all duration-300'
+									className='text-xl font-semibold text-text-light font-inter hover:text-accent transition-all duration-300'
 								>
 									{label}
 								</Link>
 							))}
 						</nav>
-
-						<div className='mt-auto'>
-							<Phones section='mobileMenu' />
-						</div>
 					</div>
-				</div>
-			)}
-		</header>
+
+					<div className='hidden items-center gap-x-5 lg:flex xl:hidden'>
+						<Phones section='headerLg' />
+					</div>
+
+					<div className='hidden items-center gap-x-5 xl:flex'>
+						<Phones section='header' />
+					</div>
+
+					{/* Burger */}
+					<button className='md:hidden p-2' onClick={() => setMenuOpen(true)}>
+						<span className='block w-6 h-0.5 bg-white mb-1' />
+						<span className='block w-6 h-0.5 bg-white mb-1' />
+						<span className='block w-6 h-0.5 bg-white' />
+					</button>
+				</SectionWrapper>
+			</header>
+
+			{/* Mobile menu modal */}
+			<BaseModal
+				isOpen={menuOpen}
+				onClose={() => setMenuOpen(false)}
+				className='p-0 border-0 bg-transparent'
+			>
+				<MobileMenuContent onClose={() => setMenuOpen(false)} />
+			</BaseModal>
+		</>
 	)
 }
-
-export default Header
