@@ -47,7 +47,7 @@ const StatCard = ({
 	return (
 		<article
 			ref={ref}
-			className='stat-card w-full max-w-[320px] h-[242px] border border-primary rounded-3xl flex flex-col items-center justify-center p-8 text-center transition-all duration-300 glass-card'
+			className='stat-card w-full max-w-[320px] h-[242px] border border-primary rounded-3xl flex flex-col items-center justify-center p-8 text-center transition-all duration-300 glass-card mx-auto'
 		>
 			<div className='w-16 h-16 rounded-full border border-primary flex items-center justify-center bg-background mb-6 shrink-0'>
 				{icon}

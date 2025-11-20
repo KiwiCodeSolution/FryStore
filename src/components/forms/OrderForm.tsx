@@ -113,7 +113,7 @@ const OrderForm = () => {
 			<BaseButton
 				btnType='submit'
 				variant='primary'
-				className='w-full rounded-full py-4 text-lg'
+				className='w-full rounded-full py-2 xl:py-4 text-lg'
 				as='button'
 			>
 				Відправити замовлення

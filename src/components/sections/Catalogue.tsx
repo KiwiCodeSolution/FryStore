@@ -8,7 +8,7 @@ const Catalogue = () => {
 		<BaseSection id='catalogue' className='relative'>
 			<div className='absolute bottom-0 left-0 h-[130px] w-full bg-linear-to-b from-transparent to-black/20 z-1' />
 
-			<SectionWrapper className='py-20 '>
+			<SectionWrapper className='py-10 md:py-20 xl:py-20'>
 				<Title tag='h2' styles='mb-12'>
 					Наша продукція
 				</Title>

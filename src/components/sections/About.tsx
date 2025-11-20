@@ -17,7 +17,7 @@ const About = () => {
 			<div className='absolute top-0 left-0 h-20 w-full between-sections-gradient z-1 rotate-180' />
 			<div className='wave-gradient absolute top-0 left-0 w-full h-full z-1 opacity-95' />
 
-			<SectionWrapper className='py-20 relative z-2'>
+			<SectionWrapper className='py-10 md:py-20 xl:py-20 relative z-2'>
 				<Title tag='h2' styles='mb-12'>
 					Про нас
 				</Title>

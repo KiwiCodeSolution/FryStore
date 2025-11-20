@@ -18,8 +18,8 @@ const Forms = () => {
 		<BaseSection id='booking' className='relative'>
 			<div className='absolute top-0 left-0 h-[130px] w-full bg-linear-to-b from-black/20 to-transparent z-1' />
 
-			<SectionWrapper className='py-20 '>
-				<div className='flex items-center justify-center gap-x-10 mx-auto relative z-2'>
+			<SectionWrapper className='pt-10 pb-16 md:py-20 xl:py-20'>
+				<div className='flex flex-col md:flex-row items-center justify-center gap-10 mx-auto relative z-2'>
 					<BaseButton
 						variant={type === 'order' ? 'primary' : 'secondary'}
 						action={() => setType('order')}
@@ -42,7 +42,7 @@ const Forms = () => {
 				</Title>
 
 				<p className='text-center mb-5'>Заповніть форму і ми зв&apos;яжемося з вами</p>
-				<div className='w-[680px] border border-primary rounded-2xl p-8 mx-auto'>
+				<div className='w-full md:w-[680px] border border-primary rounded-2xl px-3 py-6 xl:p-8 mx-auto'>
 					{type === 'consultation' ? <ConsultForm /> : <OrderForm />}
 				</div>
 			</SectionWrapper>

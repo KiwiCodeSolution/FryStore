@@ -1,3 +1,5 @@
+import { toast } from '@/config/toast'
+
 export async function sendToTelegram(message: string) {
 	const TOKEN = process.env.NEXT_PUBLIC_TG_TOKEN
 	const CHAT_ID = process.env.NEXT_PUBLIC_TG_CHAT_ID
@@ -19,8 +21,11 @@ export async function sendToTelegram(message: string) {
 				parse_mode: 'HTML'
 			})
 		})
+
+		toast.success("Запит надіслано! Ми зв'яжемося з вами найближчим часом!")
 		return true
 	} catch (e) {
+		toast.error('Помилка при надсиланні запиту! Спробуйте ще раз')
 		console.error('Telegram error:', e)
 		return false
 	}

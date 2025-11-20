@@ -6,7 +6,7 @@ const SectionWrapper = ({
 	className?: string
 }) => {
 	return (
-		<div className={`w-full max-w-7xl h-fit px-4 md:px-8 xl:px-12 mx-auto ${className}`}>
+		<div className={`w-full max-w-7xl px-4 md:px-8 xl:px-12 mx-auto ${className}`}>
 			{children}
 		</div>
 	)

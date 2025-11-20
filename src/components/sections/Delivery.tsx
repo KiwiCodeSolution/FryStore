@@ -30,15 +30,15 @@ const conditions = [
 const Delivery = () => {
 	return (
 		<BaseSection id='delivery' className='relative ' bgColor='bg-black/20'>
-			<SectionWrapper className='py-20 relative z-2'>
+			<SectionWrapper className='py-10 md:py-20 xl:py-20 relative z-2'>
 				<Title tag='h2' styles='mb-12'>
 					Доставка та оплата
 				</Title>
-				<div className='grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-x-8'>
+				<div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-x-8'>
 					{conditions.map((item, i) => (
 						<div
 							key={i}
-							className='flex flex-col items-center justify-center gap-y-3 border border-primary rounded-3xl overflow-hidden'
+							className='w-full max-w-[320px] flex flex-col items-center justify-center gap-y-3 border border-primary rounded-3xl overflow-hidden mx-auto'
 						>
 							<div className='w-full h-48 relative'>
 								<Image
@@ -53,7 +53,7 @@ const Delivery = () => {
 								</div>
 								<div className='absolute inset-0 bg-linear-to-t from-(--secondary-color) to-transparent z-2' />
 							</div>
-							<div className='w-full h-[148px] p-6 flex flex-col gap-y-3'>
+							<div className='w-full h-[148px] md:h-[200px] lg:h-[160px] xl:h-[148px] p-6 flex flex-col gap-y-3'>
 								<p className='text-2xl font-bold font-inter text-accent text-center'>
 									{item.name}
 								</p>
